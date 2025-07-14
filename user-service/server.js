@@ -5,6 +5,11 @@ const PORT = process.env.PORT || 3001;
 
 let healthy = true;
 
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);
+  next();
+});
+
 app.get('/', (req, res) => {
   res.send(`Hello from User Service - Pod: ${os.hostname()}`);
 });
